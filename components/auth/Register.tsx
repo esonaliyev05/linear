@@ -2,43 +2,80 @@
 
 import { useState } from "react";
 
-export default function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function Register({ switchToLogin }: any) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Register:", { name, email, password });
+
+    if (
+      !form.name ||
+      !form.email ||
+      !form.password ||
+      !form.confirmPassword
+    ) {
+      alert("Fill all fields");
+      return;
+    }
+
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    // 🔥 FAKE REGISTER
+    alert("Registered successfully!");
+
+    switchToLogin();
   };
 
   return (
-    <form onSubmit={handleRegister} className="space-y-4">
-      <h2 className="text-xl font-semibold">Register</h2>
-
+    <form onSubmit={handleSubmit} className="space-y-4">
+      
       <input
-        className="border p-2 w-full"
         placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        className="w-full p-3 rounded-xl bg-white/10 border border-white/20 outline-none text-white placeholder-gray-300"
+        onChange={(e) =>
+          setForm({ ...form, name: e.target.value })
+        }
       />
 
       <input
-        className="border p-2 w-full"
+        type="email"
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        className="w-full p-3 rounded-xl bg-white/10 border border-white/20 outline-none text-white placeholder-gray-300"
+        onChange={(e) =>
+          setForm({ ...form, email: e.target.value })
+        }
       />
 
       <input
-        className="border p-2 w-full"
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        className="w-full p-3 rounded-xl bg-white/10 border border-white/20 outline-none text-white placeholder-gray-300"
+        onChange={(e) =>
+          setForm({ ...form, password: e.target.value })
+        }
       />
 
-      <button className="bg-green-500 text-white w-full py-2">
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        className="w-full p-3 rounded-xl bg-white/10 border border-white/20 outline-none text-white placeholder-gray-300"
+        onChange={(e) =>
+          setForm({
+            ...form,
+            confirmPassword: e.target.value,
+          })
+        }
+      />
+
+      <button className="w-full py-3 rounded-xl bg-green-500 hover:bg-green-600 transition font-semibold">
         Register
       </button>
     </form>

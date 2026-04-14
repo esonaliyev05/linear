@@ -1,36 +1,52 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login:", { email, password });
+
+    if (!form.email || !form.password) {
+      alert("Fill all fields");
+      return;
+    }
+
+    // 🔥 FAKE LOGIN
+    localStorage.setItem("token", "fake-token");
+
+    router.push("/");
   };
 
   return (
-    <form onSubmit={handleLogin} className="space-y-4">
-      <h2 className="text-xl font-semibold">Login</h2>
-
+    <form onSubmit={handleSubmit} className="space-y-4">
+      
       <input
-        className="border p-2 w-full"
+        type="email"
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        className="w-full p-3 rounded-xl bg-white/10 border border-white/20 outline-none text-white placeholder-gray-300"
+        onChange={(e) =>
+          setForm({ ...form, email: e.target.value })
+        }
       />
 
       <input
-        className="border p-2 w-full"
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        className="w-full p-3 rounded-xl bg-white/10 border border-white/20 outline-none text-white placeholder-gray-300"
+        onChange={(e) =>
+          setForm({ ...form, password: e.target.value })
+        }
       />
 
-      <button className="bg-blue-500 text-white w-full py-2">
+      <button className="w-full py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition font-semibold">
         Login
       </button>
     </form>

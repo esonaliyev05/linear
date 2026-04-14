@@ -81,7 +81,7 @@ export const Header = () => {
           </nav>
         </div>
         <div className='ml-auto flex h-full items-center  '>
-          <Link href='/auth/login' className='text-md mr-6'>
+          <Link href='/auth' className='text-md mr-6'>
             Log in
           </Link>
           <Button href='#'>Sign Up</Button>
