@@ -60,7 +60,7 @@ export const Header = () => {
                 <Link href='#'>Features</Link>
               </li>
               <li>
-                <Link href='#'>Method</Link>
+                <Link href='/about'>Method</Link>
               </li>
               <li className='md:hidden lg:block'>
                 <Link href='#'>Customers</Link>
