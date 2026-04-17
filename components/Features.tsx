@@ -18,7 +18,7 @@ export const Features = ({ children, color, colorDark }: FeaturesProps) => {
       className={classNames(
         'relative flex flex-col items-center overflow-x-hidden py-[6rem] before:pointer-events-none before:absolute before:h-[20rem] before:w-full  before:bg-[conic-gradient(from_90deg_at_80%_50%,#000212,rgb(var(--feature-color-dark))),_conic-gradient(from_270deg_at_20%_50%,rgb(var(--feature-color-dark)),#000212)] before:bg-no-repeat before:transition-[transform,opacity] before:duration-700 before:ease-in before:[mask:_radial-gradient(100%_50%_at_center_center,_black,_transparent)] before:[background-position:1%_0%,99%_0%] before:[background-size:50%_100%,50%_100%] after:pointer-events-none after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_50%_50%_at_center,rgba(var(--feature-color),0.1),transparent)]',
         inView &&
-          'is-visible before:opacity-100 before:[transform:rotate(180deg)_scale(2)]',
+        'is-visible before:opacity-100 before:[transform:rotate(180deg)_scale(2)]',
         !inView && 'before:rotate-180 before:opacity-40'
       )}
       style={
